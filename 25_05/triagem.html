@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head><!--topo/nome-->
+    <title>Triagem</title>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body><!--fundo-->
+<div class="tela1" ><!--codigo da triagem-->
+  <h4>o que voce esta sentindo?</h2>
+  <h1>selecione nas caixas abaixo</h2>
+  <p>Por quanto tempo ficou de quarentena?</p>
+  <select name="dor" class="s1">
+    <option value="0" >Selecione</option>
+    <option value="1">1-6 MESES</option>
+    <option value="2">6-12 MESES</option>
+    <option value="3">12-24 MESES</option>
+    <option value="4">Estou desde o inicio</option>
+    </select>
+    <p>Voce foi vacinado?</p>
+    <select name="cansa" class="s2">
+      <option value="0">Selecione</option>
+      <option value="1">Sim, tomei a primeira dose apenas</option>
+      <option value="2">Sim, tomei a primeira e segunda dose apenas</option>
+      <option value="3">Sim, estou completamente imunizado (3° dose)</option>
+      <option value="4" >Sim, tomei a dose de reforço</option>
+      <option value="4" >Nao, eu nao tomei nenhuma dose</option>
+      </select>
+      <p>Voce ja foi contaminado com a covid?</p>
+      <select name="respirar" class="s3">
+        <option value="0">Selecione</option>
+        <option value="1">Sim</option>
+        <option value="2">Nao</option>
+        
+        </select>
+        <p>Voce utiliza algum tipo de medicaçao controlada ?</p>
+        <select name="outro" class="s4">
+          <option value="0">Selecione</option>
+          <option value="1">sim</option>
+          <option value="2">nao</option>
+          </select>
+          <p>Se tiver como medir sua temperatura digite-a abaixo: <br> br caso nao consiga digite 0 </p>
+          <p></p>
+
+<input type="text" name="temperatura" maxlength="3" required/></input>
+<div>
+<p>Por favor digite seu numero de celular ou telefone com o DDD: <br>  </p>
+<input type="text" name="numero" maxlength="12" required/></input>
+<p></p>
+</div>
+</body>
+<footer>
+  <!--<input type="submit" value="Enviar"/> -->
+  <a href="resultado.html" class="button">enviar</a>
+  <a href="index.html" class="button">voltar ao inicio</a>
+</footer>
+</html>
