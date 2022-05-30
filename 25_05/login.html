@@ -40,24 +40,28 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou utilize seu email para se registrar:</p>
-                <form class="form">
+                <form class="form" name="formCadastro" method="post" action="cadastro.php">
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i>
-                        <input type="text" placeholder="Nome">
+                        <input type="text" placeholder="Nome" name="inputNome">
                     </label>
                     
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="Email" name="inputEmail">
                     </label>
                     
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Senha">
+                        <input type="password" placeholder="Senha" name="inputSenha">
                     </label>
                     
+                    <label class="label-input" for="">
+                        <i class="fas fa-lock icon-modify"></i>
+                        <input type="password" placeholder="Confirmar Senha" name="inputConfirmarSenha">
+                    </label>
                     
-                    <button class="btn btn-second">REGISTRAR</button>        
+                    <button class="btn btn-second">REGISTRAR</button>
                 </form>
             </div><!-- second column -->
         </div><!-- first content -->
@@ -66,7 +70,8 @@
                 <h2 class="title title-primary">Bem vindo de volta!</h2>
                 <p class="description description-primary">insira seu email e senha</p>
                 <p class="description description-primary">para acessar o site</p>
-                <button id="signup" class="btn btn-primary">ACESSAR</button>
+                <p class="description description-primary">ou cadastre-se</p>
+                <button id="signup" class="btn btn-primary">Registrar</button>
             </div>
             <div class="second-column">
                 <h2 class="title title-second">Acesso</h2>
@@ -90,20 +95,20 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use o seu email para acessar:</p>
-                <form class="form">
+                <form class="form" action="login.php" method="post">
                 
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="Email" name="inputEmail">
                     </label>
                 
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Senha">
+                        <input type="password" placeholder="Senha" name="inputSenha">
                     </label>
                 
                     <a class="password" href="#">esqueceu sua senha?</a>
-                    <button class="btn btn-second">ACESAR</button>
+                    <button class="btn btn-second">ACESSAR</button>
                 </form>
             </div><!-- second column -->
         </div><!-- second-content -->

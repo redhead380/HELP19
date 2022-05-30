@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Agendamento</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./assets/css/base/base.css">
+		<link rel="stylesheet" href="./assets/css/agendamento.css">
+		<link rel="stylesheet" href="./assets/css/componentes/inputs.css">
+		<link rel="stylesheet" href="./assets/css/componentes/botao.css">
+		<link rel="stylesheet" href="./assets/css/componentes/huicalendar.css" />
+	</head>
+	<body class="subpage">
+
+		<script src="./assets/js/jquery-3.6.0.min.js"></script>
+		<script src="./assets/js/huicalendar.js"></script>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>HELP19</strong></a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="agendamentos.html">Agendamento</a>
+						<a href="generic.html">Sobre nós</a>
+						<a href="elements.html">Contato/serviços</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+			<section id="three" class="wrapper">
+			
+            <form class="formulario_agendamento" id="formulario_agendamento" action="./agendamento_concluido.php" method="post">			
+				<h2>Agendamento</h2>
+				<fieldset>
+				<div class="input-container">
+					<legend class="formulario__legenda">Protocolo:</legend>
+					<input id="protocolo" name="prot" type="text" readonly>
+					<script>
+						document.getElementById("protocolo").setAttribute('value', Math.floor(Math.random() * 10000000000) + 1);
+					</script>
+				</div>
+				</fieldset>
+				<fieldset>
+                    <legend class="formulario__legenda">Informações básicas:</legend>
+                    <div class="input-container">
+                        <input name="nome" id="nome" class="input" type="text" placeholder="Nome" name="nome">
+                        <label class="input-label" for="nome">Nome</label>
+                    </div>
+                    <div class="input-container">
+                        <input name="email" id="email" class="input" type="text" placeholder="Email" name="email">
+                        <label class="input-label" for="email">Email</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="formulario__legenda">Informações pessoais:</legend>
+                    <div class="input-container">
+                        <input name="nascimento" id="nascimento" class="input" type="text" placeholder="Data de nascimento" name="nascimento">
+                        <label class="input-label" for="nascimento">Data de nascimento</label>
+                    </div>
+                    <div class="input-container">
+                        <input name="cpf" id="cpf" class="input" type="text" placeholder="CPF" name="cpf">
+                        <label class="input-label" for="cpf">CPF</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="formulario__legenda">Endereço:</legend>
+                    <div class="input-container">
+                        <input name="cep" id="cep" class="input" type="text" placeholder="CEP" name="cep">
+                        <label class="input-label" for="cep">CEP</label>
+                    </div>
+                    <div class="input-container">
+                        <input name="logradouro" id="logradouro" class="input" type="text" placeholder="Logradouro" name="logradouro">
+                        <label class="input-label" for="logradouro">Logradouro</label>
+                    </div>
+                    <div class="input-container">
+                        <input name="cidade" id="cidade" class="input" type="text" placeholder="Cidade" name="cidade">
+                        <label class="input-label" for="cidade">Cidade</label>
+                    </div>
+                    <div class="input-container">
+                        <input name="estado" id="estado" class="input" type="text" placeholder="Estado" name="estado">
+                        <label class="input-label" for="estado">Estado</label>
+                    </div>
+					<div class="input-container">
+                        <legend class="formulario__legenda">Selecione a data do agendamento:</legend>
+                    </div>
+
+					<input id="current_date" name="data_agendamento" readonly>
+					<div class="myCalendar" id="myCalendar">	
+						<script>
+							date = new Date();
+							year = date.getFullYear();
+							month = date.getMonth() + 1;
+							day = date.getDate();
+							document.getElementById("current_date").setAttribute('value', day + "/" + month + "/" + year);
+
+							$('.myCalendar').huicalendar({
+							viewDay:new Date('2022/05/01'),
+							enabledDay: [1,2,3,4,5,6,7,8,9,10,11,12,13,
+							14,15,16,17,18,19,20,21,22,23,24,25,26,27,
+							28,29,30,31]	
+							}).on('changeDate',function(e){
+							document.getElementById("current_date").setAttribute('value', e.date + "/" + e.month + "/" + e.year);
+							})
+						</script>
+					</div>
+
+					<div class="input-container">
+                        <legend class="formulario__legenda">Selecione um horário:</legend>
+                    </div>
+
+					<input id="horario_agendamento" name="horario_agendamento" type="hidden" readonly>
+					<script>
+						function btn(conteudo_botao) {
+							document.getElementById("horario_agendamento").setAttribute('value', conteudo_botao);
+						}
+					</script>
+
+					<div class="btn-group2">
+						<button type="button" onclick="btn(textContent)">09:00</button>
+						<button type="button" onclick="btn(textContent)">10:00</button>
+						<button type="button" onclick="btn(textContent)">11:00</button>
+						<button type="button" onclick="btn(textContent)">12:00</button>
+						<button type="button" onclick="btn(textContent)">13:00</button>
+						<button type="button" onclick="btn(textContent)">14:00</button>
+						<button type="button" onclick="btn(textContent)">15:00</button>
+					</div>
+					<br><br>
+				<div class="input-container">
+					<legend class="formulario__legenda">Selecione um local:</legend>
+				</div>
+					<select name="local_agendamento" id="locais">
+						<option id="paulista">Unidade Avenida Paulista</option>
+						<option id="mooca">Unidade Mooca</option>
+						<option id="santana">Unidade Santana</option>
+						<option id="liberdade">Unidade Liberdade</option>
+					</select>
+                </fieldset><br>
+                <button type="submit" class="btn_cadastrar" id="btn_cadastrar">Agendar</a>		
+				
+            </form>
+			</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="https://portal.fmu.br/">FMU</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+				</div>
+
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+			<script src="./assets/js/agendamento.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			
+	</body>
+</html>
