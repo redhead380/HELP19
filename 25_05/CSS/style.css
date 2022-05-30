@@ -242,6 +242,11 @@ input:-webkit-autofill
     animation: deslocamentoDir 1.3s; /*MODIFIQUEI DE 3s PARA 1.3s*/
 }
 
+.boxa{
+    visibility: hidden;
+    border: 1px solid red;
+}
+
 /*ANIMAÇÃOO CSS PARA O CONTEÚDO*/
 
 @keyframes deslocamentoEsq {

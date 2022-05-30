@@ -1,42 +1,56 @@
 <?php
-$login = $_POST['login'];
-$senha = MD5($_POST['senha']);
-$connect = mysql_connect('nome_do_servidor','nome_de_usuario','senha');
-$db = mysql_select_db('nome_do_banco_de_dados');
-$query_select = "SELECT login FROM usuarios WHERE login = '$login'";
-$select = mysql_query($query_select,$connect);
-$array = mysql_fetch_array($select);
-$logarray = $array['login'];
+  $login = trim($_POST['inputEmail']);
+  $senha = MD5(trim($_POST['inputSenha']));
+  $confirmarSenha = MD5(trim($_POST['inputConfirmarSenha']));
+  $nome = trim($_POST['inputNome']);
+  $mensagem = "";
 
-  if($login == "" || $login == null){
-    echo"<script language='javascript' type='text/javascript'>
-    alert('O campo login deve ser preenchido');window.location.href='
-    cadastro.html';</script>";
+  if (empty($nome)) {
+    $mensagem =  "Nome obrigatório!";
+  } else if (empty($login)) {
+    $mensagem = "E-mail obrigatório!";
+  } else if (empty($senha)) {
+    $mensagem =  "Senha obrigatória!";
+  } else if (empty($confirmarSenha)) {
+    $mensagem =  "Confirmação de Senha obrigatório!";
+  } else if ($senha != $confirmarSenha) {
+    $mensagem =  "Senhas não conferem";
+  }
 
-    }else{
-      if($logarray == $login){
+  if ($mensagem != "") {
+    echo $mensagem;
+    echo "<br><br><a onclick='history.back();' href='#'>Voltar</a>";
+    exit();
+  }
 
-        echo"<script language='javascript' type='text/javascript'>
-        alert('Esse login já existe');window.location.href='
-        cadastro.html';</script>";
-        die();
+  $mysqli = new mysqli("localhost","root","","help19");
 
-      }else{
-        $query = "INSERT INTO usuarios (login,senha) VALUES ('$login','$senha')";
-        $insert = mysql_query($query,$connect);
+  // Check connection
+  if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    exit();
+  }
 
-        if($insert){
-          echo"<script language='javascript' type='text/javascript'>
-          alert('Usuário cadastrado com sucesso!');window.location.
-          href='login.html'</script>";
-        }else{
-          echo"<script language='javascript' type='text/javascript'>
-          alert('Não foi possível cadastrar esse usuário');window.location
-          .href='cadastro.html'</script>";
-        }
+  // Perform query
+  if ($result = $mysqli->query("SELECT email FROM usuarios WHERE email = '$login'")) {
+    if ($result->num_rows == 0) {
+      if ($mysqli->query("INSERT INTO usuarios (email, nm_usuario, senha) VALUES ('$login', '$nome','$senha')") == true) {
+        session_start();
+        $_SESSION["usuario"] = $login;
+        header("Location: /25_05/index.php");
+      } else {
+        echo "Erro inesperado!";
       }
+    } else {
+      echo "E-mail já cadastrado!";
     }
-    ?>
+
+    // Free result set
+    $result -> free_result();
+  }
+
+  $mysqli -> close();
+?>
 
 
 
